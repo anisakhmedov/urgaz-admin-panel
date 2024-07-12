@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "gilroy";
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        .line{
+            height: 5px;
+            width: 100%;
+            background-color: black;
+        }
+        a {
+            font-size: 64px;
+            text-decoration: none;
+            color: black;
+        }
+    }
+}

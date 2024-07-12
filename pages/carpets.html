@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ковры</title>
+    <link rel="stylesheet" href="../css/carpets.css">
+    <link rel="stylesheet" href="../css/index.css">
+
+</head>
+<body>
+    <nav>
+        <a href="../index.html"><img src="../assets/arrow-left.svg" alt=""></a>
+        <a href="create-page.html">Создать ковер</a>
+        <input type="text" id="search" placeholder="Искать по коду или названию">
+    </nav>
+    <div class="wrapper">
+        
+    </div>
+    <div class="modal_window">
+        <form id="changedForm">
+            <h1>Изменить ковер</h1>
+            <div class="lang">
+                <input name="title_ru" placeholder="Название товара RU" type="text" required>
+                <input name="title_uz" placeholder="Название товара UZ" type="text" required>
+                <input name="title_eng" placeholder="Название товара ENG" type="text" required>
+            </div>
+            <div class="check">
+                <label for="">Есть ли в наличии</label>
+                <input name="valueHave" placeholder="Есть ли в наличии" type="checkbox" required>
+            </div>
+            <div class="lang">
+                <input name="material_ru" placeholder="Материал RU" type="text" required>
+                <input name="material_uz" placeholder="Материал UZB" type="text" required>
+                <input name="material_eng" placeholder="Материал ENG" type="text" required>
+            </div>
+            <div class="lang">
+                <input name="collection_carp_ru" placeholder="Коллекция RU" type="text" required>
+                <input name="collection_carp_uzb" placeholder="Коллекция UZB" type="text" required>
+                <input name="collection_carp_eng" placeholder="Коллекция ENG" type="text" required>
+            </div>
+            <div class="lang">
+                <input name="colors_ru" placeholder="Цвет RU" type="text" required>
+                <input name="colors_uzb" placeholder="Цвет UZB" type="text" required>
+                <input name="colors_eng" placeholder="Цвет ENG" type="text" required>
+            </div>
+            <input type="text" name="color_rgb" placeholder="Код цвета" required>
+            <div class="lang">
+                <input name="categories_ru" placeholder="Категория RU" type="text" required>
+                <input name="categories_uzb" placeholder="Категория UZB" type="text" required>
+                <input name="categories_eng" placeholder="Категория ENG" type="text" required>
+            </div>
+            <div class="lang">
+                <input name="model_ru" placeholder="Модель ковра RU" type="text" required>
+                <input name="model_uzb" placeholder="Модель ковра UZB" type="text" required>
+                <input name="model_eng" placeholder="Модель ковра ENG" type="text" required>
+            </div>
+            <input name="code" placeholder="Код ковра" type="text" required>
+            <div class="carpet_img">
+                <label for="">Фото ковра</label>
+                <input type="file" id="image_carpet" name="image_carpet" accept="image/*" required>
+            </div>
+            <div class="carpet_img">
+                <label for="">Фото тафтинга</label>
+                <input type="file" id="image_taft" name="image_taft" accept="image/*" required>
+            </div>
+            <button type="submit">Загрузить</button>
+        </form>
+        <div class="bg"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/carpet.js"></script>
+</body>
+</html>
+
+<!--
+"categories_ru": "asdsa",
+"categories_uzb": "asdasd",
+"categories_eng": "asdasd",
+"model_ru": "dasdads",
+"model_uzb": "asdasd",
+"model_eng": "asdasd",
+"code": "asdasd",
+"image_carpet": "uploads/1720718616016-Group 35.png",
+"image_taft": "uploads/1720718616017-Default_A_vibrant_digital_illustration_on_a_glossy_poster_set_3.jpg", -->
