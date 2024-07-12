@@ -134,6 +134,7 @@ let showData = (prom) => {
                                 }
                             });
                             getUsers()
+                            changeCarpet.parentElement.classList.remove('active')
                             alert('Ковер обновлен успешно');
                         } catch (error) {
                             console.error('Error uploading carpet:', error);
@@ -148,7 +149,6 @@ let showData = (prom) => {
                     axios.delete(`${api}/${carpet._id}`)
                         .then((res) => {
                             console.log(res);
-                            changeCarpet.parentElement.classList.remove('active')
                             getUsers()
                         })
                         .catch((err) => {
