@@ -57,7 +57,7 @@ let arr = []
 let getUsers = () => {
     axios.get(api)
         .then((res) => {
-            arr = res.data
+            arr = res
             showData(res.data)
             // console.log(res.data);
         })
@@ -74,8 +74,6 @@ let showData = (prom) => {
     wrapper.innerHTML = ''
     for (let carpet of prom) {
         let div = document.createElement('div');
-        // <div class="item" id="${carpet._id}">
-
         div.setAttribute('class', 'item');
         div.id = carpet._id;
         div.innerHTML = `
@@ -85,7 +83,7 @@ let showData = (prom) => {
                     <p class="material">Материал: ${carpet.material_ru}</p>
                     <p class="collection">Коллекция: ${carpet.collection_carp_ru}</p>
                     <p class="colors">Основной цвет: ${carpet.colors_ru}</p>
-                    <p class="colors_rgb">Код цвета: ${carpet.colors_rgb}</p>
+                    <p class="colors_rgb">Код цвета: ${carpet.color_rgb}</p>
                     <p class="categories">Категория: ${carpet.categories_ru}s</p>
                     <p class="model">Модель: ${carpet.model_ru}</p>
                     <p class="code">Код: ${carpet.code}</p>
@@ -114,18 +112,48 @@ let showData = (prom) => {
                             }
                         }
                     }
+                    changeCarpet.onsubmit = async () => {
+                        event.preventDefault();
+                        const formData = new FormData(event.target);
+                        // console.log(formData);
+                        let obj = {}
+                        formData.forEach((val, key) => {
+                            obj[key] = val
+                        })
+
+                        const imageFile = document.getElementById('image_carpet').files[0];
+                        const imageTaft = document.getElementById('image_taft').files[0];
+
+                        obj['image_carpet'] = imageFile
+                        obj['image_taft'] = imageTaft
+
+                        try {
+                            const response = await axios.patch(`https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets/${carpet._id}`, obj, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            });
+                            getUsers()
+                            alert('Ковер обновлен успешно');
+                        } catch (error) {
+                            console.error('Error uploading carpet:', error);
+                            alert('Ковер не был обновлен');
+                        }
+                        console.log(123);
+                    }
                 }
             } else if (item.className.includes('remove')) {
                 item.onclick = () => {
                     console.log(carpet._id);
-                    // axios.delete(`${api}/${carpet._id}`)
-                    //     .then(() => {
-                    //         console.log(res);
-                    //         getUsers()
-                    //     })
-                    //     .catch((err) => {
-                    //         console.log(err);
-                    //     })
+                    axios.delete(`${api}/${carpet._id}`)
+                        .then((res) => {
+                            console.log(res);
+                            changeCarpet.parentElement.classList.remove('active')
+                            getUsers()
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
                 }
             }
         }
@@ -143,3 +171,6 @@ search_carpet.onkeyup = function () {
     if (event.target.value.toLowerCase().length >= 1 && filteredCategories.length == 0) wrapper.innerHTML = "Ничего нет"
     else showData(filteredCategories)
 };
+
+
+
