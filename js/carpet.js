@@ -57,7 +57,7 @@ let arr = []
 let getUsers = () => {
     axios.get(api)
         .then((res) => {
-            arr = res
+            arr = res.data
             showData(res.data)
             // console.log(res.data);
         })
@@ -79,7 +79,7 @@ let showData = (prom) => {
         div.innerHTML = `
             <div class="text">
                     <p class="title">Названия: ${carpet.title_ru}</p>
-                    <p class="number">Имеется ли в наличии: ${carpet.valueHave == false ? 'Имеется' : 'Нету'}</p>
+                    <p class="number">Имеется ли в наличии: ${carpet.valueHave === 'true' ? 'Имеется' : 'Нету'}</p>
                     <p class="material">Материал: ${carpet.material_ru}</p>
                     <p class="collection">Коллекция: ${carpet.collection_carp_ru}</p>
                     <p class="colors">Основной цвет: ${carpet.colors_ru}</p>
@@ -107,15 +107,21 @@ let showData = (prom) => {
                     }
                     for (let inputs of changeCarpet.querySelectorAll('input')) {
                         for (let names of Object.keys(carpet)) {
-                            if (inputs.getAttribute('name') == names && inputs.getAttribute('type') != 'file') {
+                            if (inputs.getAttribute('name') == names && inputs.getAttribute('type') != 'file' && inputs.getAttribute('type') != 'checkbox') {
                                 inputs.value = carpet[names]
+                                if (inputs.getAttribute('name') == 'valueHave') {
+                                    if (carpet.valueHave == 'true') {
+                                        inputs.setAttribute('checked', 'checked')
+                                    } else if (carpet.valueHave == 'false') {
+                                        inputs.removeAttribute('checked')
+                                    }
+                                }
                             }
                         }
                     }
                     changeCarpet.onsubmit = async () => {
                         event.preventDefault();
                         const formData = new FormData(event.target);
-                        // console.log(formData);
                         let obj = {}
                         formData.forEach((val, key) => {
                             obj[key] = val
@@ -124,9 +130,24 @@ let showData = (prom) => {
                         const imageFile = document.getElementById('image_carpet').files[0];
                         const imageTaft = document.getElementById('image_taft').files[0];
 
-                        obj['image_carpet'] = imageFile
-                        obj['image_taft'] = imageTaft
+                        if (imageFile == undefined) {
+                            obj['image_carpet'] = carpet.image_carpet
+                        } else if (imageTaft == undefined) {
+                            obj['image_taft'] = carpet.image_taft
+                        } else if (imageFile != undefined) {
+                            obj['image_carpet'] = imageFile
+                        } else if (imageTaft != undefined) {
+                            obj['image_taft'] = imageTaft
+                        } else {
+                            obj['image_carpet'] = carpet.image_carpet
+                            obj['image_taft'] = carpet.image_taft
+                        }
 
+                        if (obj.valueHave == 'on') {
+                            obj.valueHave = true
+                        } else{
+                            obj.valueHave = false
+                        }
                         try {
                             const response = await axios.patch(`https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets/${carpet._id}`, obj, {
                                 headers: {
@@ -140,12 +161,10 @@ let showData = (prom) => {
                             console.error('Error uploading carpet:', error);
                             alert('Ковер не был обновлен');
                         }
-                        console.log(123);
                     }
                 }
             } else if (item.className.includes('remove')) {
                 item.onclick = () => {
-                    console.log(carpet._id);
                     axios.delete(`${api}/${carpet._id}`)
                         .then((res) => {
                             console.log(res);

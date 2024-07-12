@@ -13,8 +13,12 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
     obj['image_carpet'] = imageFile
     obj['image_taft'] = imageTaft
 
-    // console.log(imageFile, imageTaft);
-    console.log(obj);
+    if (obj.valueHave == 'on') {
+        obj.valueHave = true
+    } else{
+        obj.valueHave = false
+    }
+
     try {
         const response = await axios.post('https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets', obj, {
             headers: {
