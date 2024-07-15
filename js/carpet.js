@@ -1,54 +1,4 @@
-// async function fetchCarpets() {
-//     try {
-//         const response = await 
-//         const carpets = response.data;
-//         const carpetList = document.getElementById('carpetList');
-//         carpetList.innerHTML = ''; // Clear any existing content
-//         carpets.forEach(carpet => {
-//             const carpetDiv = document.createElement('div');
-//             carpetDiv.className = 'carpet';
-//             carpetDiv.innerHTML = `
-//             <h3>${carpet.title}</h3>
-//             <p>Material: ${carpet.material}</p>
-//             <p>Collection: ${carpet.collection_carp}</p>
-//             <p>Colors: ${carpet.colors.join(', ')}</p>
-//             <p>Categories: ${carpet.categories}</p>
-//             <p>Height: ${carpet.height}</p>
-//             <p>Cotton: ${carpet.cotton}</p>
-//             <p>Width: ${carpet.width}</p>
-//             <img src="https://urgaz-basedate-64ecc72d32d4.herokuapp.com/${carpet.image}" alt="${carpet.title}">
-//           `;
-//             carpetList.appendChild(carpetDiv);
-//         });
-//     } catch (error) {
-//         console.error('Error fetching carpets:', error);
-//     }
-// }
 
-// import { join } from "path";
-
-// // Call fetchCarpets when the page loads
-// window.onload = fetchCarpets;
-
-// // Upload Carpet
-// document.getElementById('uploadForm').addEventListener('submit', async function (event) {
-//     event.preventDefault();
-//     const formData = new FormData(event.target);
-//     console.log(formData);
-//     try {
-//         const response = await axios.post('https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets', formData, {
-//             headers: {
-//                 'Content-Type': 'multipart/form-data'
-//             }
-//         });
-//         console.log('Carpet uploaded:', response.data);
-//         alert('Carpet uploaded successfully');
-//         fetchCarpets(); // Refresh the carpet list after upload
-//     } catch (error) {
-//         console.error('Error uploading carpet:', error);
-//         alert('Error uploading carpet');
-//     }
-// });
 
 const api = 'https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets'
 let wrapper = document.querySelector('.wrapper');
@@ -78,15 +28,13 @@ let showData = (prom) => {
         div.id = carpet._id;
         div.innerHTML = `
             <div class="text">
+            <p class="categories">Категория: ${carpet.categories_ru}s</p>
                     <p class="title">Названия: ${carpet.title_ru}</p>
-                    <p class="number">Имеется ли в наличии: ${carpet.valueHave === 'true' ? 'Имеется' : 'Нету'}</p>
-                    <p class="material">Материал: ${carpet.material_ru}</p>
-                    <p class="collection">Коллекция: ${carpet.collection_carp_ru}</p>
-                    <p class="colors">Основной цвет: ${carpet.colors_ru}</p>
-                    <p class="colors_rgb">Код цвета: ${carpet.color_rgb}</p>
-                    <p class="categories">Категория: ${carpet.categories_ru}s</p>
-                    <p class="model">Модель: ${carpet.model_ru}</p>
+                    <p class="colors">Основной цвет: ${carpet.colors}</p>
                     <p class="code">Код: ${carpet.code}</p>
+                    <p class="code">Ворс: ${carpet.vorse}</p>
+                    <p class="weight">Вес: ${carpet.weight}</p>
+                    <p class="valuePuchok">Кол-во пучков: ${carpet.valuePuchok}</p>
             </div>
             <div class="images">
                 <img src="https://urgaz-basedate-64ecc72d32d4.herokuapp.com/${carpet.image_carpet}" alt="">
@@ -141,12 +89,6 @@ let showData = (prom) => {
                         } else {
                             obj['image_carpet'] = carpet.image_carpet
                             obj['image_taft'] = carpet.image_taft
-                        }
-
-                        if (obj.valueHave == 'on') {
-                            obj.valueHave = true
-                        } else{
-                            obj.valueHave = false
                         }
                         try {
                             const response = await axios.patch(`https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets/${carpet._id}`, obj, {

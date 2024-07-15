@@ -11,57 +11,38 @@
     <nav>
         <a href="../index.html"><img src="../assets/arrow-left.svg" alt=""></a>
         <a href="create-page.html">Создать ковер</a>
-        <input type="text" id="search" placeholder="Искать по коду или названию">
+        <input type="text" id="search" placeholder="Искать по коду">
     </nav>
     <div class="wrapper">
         
     </div>
     <div class="modal_window">
         <form id="changedForm">
-            <h1>Изменить ковер</h1>
-            <div class="lang">
-                <input name="title_ru" placeholder="Название товара RU" type="text" required>
-                <input name="title_uz" placeholder="Название товара UZ" type="text" required>
-                <input name="title_eng" placeholder="Название товара ENG" type="text" required>
-            </div>
-            <div class="check">
-                <label for="">Есть ли в наличии</label>
-                <input name="valueHave" placeholder="Есть ли в наличии" type="checkbox">
-            </div>
-            <div class="lang">
-                <input name="material_ru" placeholder="Материал RU" type="text" required>
-                <input name="material_uz" placeholder="Материал UZB" type="text" required>
-                <input name="material_eng" placeholder="Материал ENG" type="text" required>
-            </div>
-            <div class="lang">
-                <input name="collection_carp_ru" placeholder="Коллекция RU" type="text" required>
-                <input name="collection_carp_uzb" placeholder="Коллекция UZB" type="text" required>
-                <input name="collection_carp_eng" placeholder="Коллекция ENG" type="text" required>
-            </div>
-            <div class="lang">
-                <input name="colors_ru" placeholder="Цвет RU" type="text" required>
-                <input name="colors_uzb" placeholder="Цвет UZB" type="text" required>
-                <input name="colors_eng" placeholder="Цвет ENG" type="text" required>
-            </div>
-            <input type="text" name="color_rgb" placeholder="Код цвета" required>
+            <h1>Создать ковер</h1>
             <div class="lang">
                 <input name="categories_ru" placeholder="Категория RU" type="text" required>
                 <input name="categories_uzb" placeholder="Категория UZB" type="text" required>
                 <input name="categories_eng" placeholder="Категория ENG" type="text" required>
             </div>
             <div class="lang">
-                <input name="model_ru" placeholder="Модель ковра RU" type="text" required>
-                <input name="model_uzb" placeholder="Модель ковра UZB" type="text" required>
-                <input name="model_eng" placeholder="Модель ковра ENG" type="text" required>
+                <input name="title_ru" placeholder="Название товара RU" type="text" required>
+                <input name="title_uz" placeholder="Название товара UZ" type="text" required>
+                <input name="title_eng" placeholder="Название товара ENG" type="text" required>
             </div>
-            <input name="code" placeholder="Код ковра" type="text" required>
+            <div class="lang">
+                <input name="vorse" placeholder="Ворс" type="text" required>
+                <input name="weight" placeholder="Вес" type="text" required>
+                <input name="code" placeholder="Код ковра" type="text" required>
+            </div>
+            <input type="text" name="colors" placeholder="Цвета через ',' (красный, желтый, розовый)" required>
+            <input type="text" name="valuePuchok" placeholder="Кол во пучков" required>
             <div class="carpet_img">
                 <label for="">Фото ковра</label>
-                <input type="file" id="image_carpet" name="image_carpet" accept="image/*" >
+                <input type="file" id="image_carpet" name="image_carpet" accept="image/*">
             </div>
             <div class="carpet_img">
-                <label for="">Фото визулизации</label>
-                <input type="file" id="image_taft" name="image_taft" accept="image/*" >
+                <label for="">Фото визуализации</label>
+                <input type="file" id="image_taft" name="image_taft" accept="image/*">
             </div>
             <button type="submit">Загрузить</button>
         </form>

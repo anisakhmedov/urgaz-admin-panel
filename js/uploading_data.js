@@ -1,7 +1,6 @@
 document.getElementById('uploadForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    // console.log(formData);
     let obj = {}
     formData.forEach((val, key) => {
         obj[key] = val
@@ -12,12 +11,6 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
 
     obj['image_carpet'] = imageFile
     obj['image_taft'] = imageTaft
-
-    if (obj.valueHave == 'on') {
-        obj.valueHave = true
-    } else{
-        obj.valueHave = false
-    }
 
     try {
         const response = await axios.post('https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets', obj, {
