@@ -18,6 +18,9 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
                 'Content-Type': 'multipart/form-data'
             }
         });
+        for(let item of document.querySelectorAll('input')){
+            console.log(item.value = '');
+        }
         console.log('Carpet uploaded:', response.data);
         alert('Carpet uploaded successfully');
     } catch (error) {
