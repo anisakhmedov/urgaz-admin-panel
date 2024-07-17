@@ -28,7 +28,7 @@ let showData = (prom) => {
         div.id = carpet._id;
         div.innerHTML = `
             <div class="text">
-            <p class="categories">Категория: ${carpet.categories_ru}s</p>
+            <p class="categories">Категория: ${carpet.categories_ru}</p>
                     <p class="title">Названия: ${carpet.title_ru}</p>
                     <p class="colors">Основной цвет: ${carpet.colors}</p>
                     <p class="code">Код: ${carpet.code}</p>
