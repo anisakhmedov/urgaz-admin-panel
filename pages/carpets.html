@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../css/index.css">
 
 </head>
+
 <body>
     <nav>
         <a href="../index.html"><img src="../assets/arrow-left.svg" alt=""></a>
@@ -14,43 +16,40 @@
         <input type="text" id="search" placeholder="Искать по коду">
     </nav>
     <div class="wrapper">
-        
+
     </div>
     <div class="modal_window">
         <form id="changedForm">
-            <h1>Создать ковер</h1>
+            <h1>Обновить ковер</h1>
             <div class="lang">
-                <input name="categories_ru" placeholder="Категория RU" type="text" required>
-                <input name="categories_uzb" placeholder="Категория UZB" type="text" required>
-                <input name="categories_eng" placeholder="Категория ENG" type="text" required>
+                <input type="text" id="categories_ru" name="categories_ru" placeholder="Categories RU" required />
+                <input type="text" id="categories_uzb" name="categories_uzb" placeholder="Categories UZB" required />
+                <input type="text" id="categories_eng" name="categories_eng" placeholder="Categories ENG" required />
             </div>
             <div class="lang">
-                <input name="title_ru" placeholder="Название товара RU" type="text" required>
-                <input name="title_uz" placeholder="Название товара UZ" type="text" required>
-                <input name="title_eng" placeholder="Название товара ENG" type="text" required>
+                <input type="text" id="title" name="title" placeholder="Title" required />
             </div>
             <div class="lang">
-                <input name="vorse" placeholder="Ворс" type="text" required>
-                <input name="weight" placeholder="Вес" type="text" required>
-                <input name="code" placeholder="Код ковра" type="text" required>
-            </div>
-            <input type="text" name="colors" placeholder="Цвета через ',' (красный, желтый, розовый)" required>
-            <input type="text" name="valuePuchok" placeholder="Кол во пучков" required>
-            <div class="carpet_img">
-                <label for="">Фото ковра</label>
-                <input type="file" id="image_carpet" name="image_carpet" accept="image/*">
+                <input type="text" id="vorse" name="vorse" placeholder="Vorse" required />
+                <input type="text" id="weight" name="weight" placeholder="Weight" required />
+                <input type="text" id="valuePuchok" name="valuePuchok" placeholder="Value Puchok" required />
             </div>
             <div class="carpet_img">
-                <label for="">Фото визуализации</label>
-                <input type="file" id="image_taft" name="image_taft" accept="image/*">
+                <label for="">Фото ковров</label>
+                <input type="file" id="image_carpet" multiple name="image_carpet" accept="image/*" required>
             </div>
-            <button type="submit">Загрузить</button>
+            <div class="carpet_img">
+                <label for="">Фото визуализаций</label>
+                <input type="file" id="image_taft" multiple name="image_taft" accept="image/*" required>
+            </div>
+            <button type="button" onclick="createCarpet()">Загрузить</button>
         </form>
         <div class="bg"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../js/carpet.js"></script>
 </body>
+
 </html>
 
 <!--

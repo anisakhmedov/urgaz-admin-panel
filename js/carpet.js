@@ -29,16 +29,18 @@ let showData = (prom) => {
         div.innerHTML = `
             <div class="text">
             <p class="categories">Категория: ${carpet.categories_ru}</p>
-                    <p class="title">Названия: ${carpet.title_ru}</p>
-                    <p class="colors">Основной цвет: ${carpet.colors}</p>
-                    <p class="code">Код: ${carpet.code}</p>
+                    <p class="title">Названия: ${carpet.title}</p>
                     <p class="code">Ворс: ${carpet.vorse}</p>
                     <p class="weight">Вес: ${carpet.weight}</p>
                     <p class="valuePuchok">Кол-во пучков: ${carpet.valuePuchok}</p>
             </div>
-            <div class="images">
-                <img src="https://urgaz-basedate-64ecc72d32d4.herokuapp.com/${carpet.image_carpet}" alt="">
-                <img src="https://urgaz-basedate-64ecc72d32d4.herokuapp.com/${carpet.image_taft}" alt="">
+            <div class="images" id="${carpet._id}">
+                <div class="carpet_images">
+
+                </div>
+                <div class="taft_images">
+
+                </div>
             </div>
             <div class="btns">
                 <button class="change">Изменить</button>
@@ -120,6 +122,8 @@ let showData = (prom) => {
         }
         wrapper.appendChild(div)
     }
+
+    showImages(prom)
 }
 
 const search_carpet = document.getElementById('search');
@@ -133,5 +137,38 @@ search_carpet.onkeyup = function () {
     else showData(filteredCategories)
 };
 
+let showImages = (param) => {
+    let images_box_carpet = document.querySelectorAll('.carpet_images')
+    let images_box_taft = document.querySelectorAll('.taft_images')
 
+    console.log(param);
+    for (let carpet of param) {
+        for (let item of images_box_carpet) {
+            if (carpet._id === item.parentElement.id) {
+                for (images of carpet.image_carpet) {
+                    let image = document.createElement('img')
+                    image.src = `https://urgaz-basedate-64ecc72d32d4.herokuapp.com/${images.image_carpet}`
+                    item.append(image)
+                }
+            }
+        }
 
+        for (let item of images_box_taft) {
+            if (carpet._id === item.parentElement.id) {
+                for (images of carpet.image_taft) {
+                    let image = document.createElement('img')
+                    image.src = `https://urgaz-basedate-64ecc72d32d4.herokuapp.com/${images.image_taft}`
+                    item.append(image)
+                }
+            }
+        }
+
+    }
+    console.log(images_box_carpet);
+    console.log(images_box_taft);
+}
+
+// for(let images of carpet.image_carpet){
+//     console.log(images.image_carpet);
+//     console.log(document.querySelector('.carpet_images'));
+// }
