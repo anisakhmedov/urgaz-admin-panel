@@ -164,8 +164,6 @@ let showImages = (param) => {
         }
 
     }
-    console.log(images_box_carpet);
-    console.log(images_box_taft);
 }
 
 // for(let images of carpet.image_carpet){
