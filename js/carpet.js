@@ -44,20 +44,6 @@ let showData = (prom) => {
                     changeCarpet.parentElement.querySelector('.bg').onclick = () => {
                         changeCarpet.parentElement.classList.remove('active')
                     }
-                    for (let inputs of changeCarpet.querySelectorAll('input')) {
-                        for (let names of Object.keys(carpet)) {
-                            if (inputs.getAttribute('name') == names && inputs.getAttribute('type') != 'file' && inputs.getAttribute('type') != 'checkbox') {
-                                inputs.value = carpet[names]
-                                if (inputs.getAttribute('name') == 'valueHave') {
-                                    if (carpet.valueHave == 'true') {
-                                        inputs.setAttribute('checked', 'checked')
-                                    } else if (carpet.valueHave == 'false') {
-                                        inputs.removeAttribute('checked')
-                                    }
-                                }
-                            }
-                        }
-                    }
                     changeCarpet.onsubmit = async () => {
                         event.preventDefault();
                         const formData = new FormData(event.target);
@@ -65,22 +51,6 @@ let showData = (prom) => {
                         formData.forEach((val, key) => {
                             obj[key] = val
                         })
-
-                        const imageFile = document.getElementById('image_carpet').files[0];
-                        const imageTaft = document.getElementById('image_taft').files[0];
-
-                        if (imageFile == undefined) {
-                            obj['image_carpet'] = carpet.image_carpet
-                        } else if (imageTaft == undefined) {
-                            obj['image_taft'] = carpet.image_taft
-                        } else if (imageFile != undefined) {
-                            obj['image_carpet'] = imageFile
-                        } else if (imageTaft != undefined) {
-                            obj['image_taft'] = imageTaft
-                        } else {
-                            obj['image_carpet'] = carpet.image_carpet
-                            obj['image_taft'] = carpet.image_taft
-                        }
                         try {
                             const response = await axios.patch(`https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets/${carpet._id}`, obj, {
                                 headers: {
@@ -112,7 +82,6 @@ let showData = (prom) => {
         wrapper.appendChild(div)
     }
 
-    showImages(prom)
 }
 
 const search_carpet = document.getElementById('search');
