@@ -1,5 +1,3 @@
-
-
 const api = 'https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets'
 let wrapper = document.querySelector('.wrapper');
 let arr = []
@@ -9,7 +7,6 @@ let getUsers = () => {
         .then((res) => {
             arr = res.data
             showData(res.data)
-            // console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -33,14 +30,6 @@ let showData = (prom) => {
                     <p class="code">Ворс: ${carpet.vorse}</p>
                     <p class="weight">Вес: ${carpet.weight}</p>
                     <p class="valuePuchok">Кол-во пучков: ${carpet.valuePuchok}</p>
-            </div>
-            <div class="images" id="${carpet._id}">
-                <div class="carpet_images">
-
-                </div>
-                <div class="taft_images">
-
-                </div>
             </div>
             <div class="btns">
                 <button class="change">Изменить</button>
@@ -137,34 +126,6 @@ search_carpet.onkeyup = function () {
     else showData(filteredCategories)
 };
 
-let showImages = (param) => {
-    let images_box_carpet = document.querySelectorAll('.carpet_images')
-    let images_box_taft = document.querySelectorAll('.taft_images')
-
-    console.log(param);
-    for (let carpet of param) {
-        for (let item of images_box_carpet) {
-            if (carpet._id === item.parentElement.id) {
-                for (images of carpet.image_carpet) {
-                    let image = document.createElement('img')
-                    image.src = `https://urgaz-basedate-64ecc72d32d4.herokuapp.com/${images.image_carpet}`
-                    item.append(image)
-                }
-            }
-        }
-
-        for (let item of images_box_taft) {
-            if (carpet._id === item.parentElement.id) {
-                for (images of carpet.image_taft) {
-                    let image = document.createElement('img')
-                    image.src = `https://urgaz-basedate-64ecc72d32d4.herokuapp.com/${images.image_taft}`
-                    item.append(image)
-                }
-            }
-        }
-
-    }
-}
 
 // for(let images of carpet.image_carpet){
 //     console.log(images.image_carpet);
