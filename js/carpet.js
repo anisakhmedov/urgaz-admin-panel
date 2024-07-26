@@ -30,6 +30,7 @@ let showData = (prom) => {
                     <p class="code">Ворс: ${carpet.vorse}</p>
                     <p class="weight">Вес: ${carpet.weight}</p>
                     <p class="valuePuchok">Кол-во пучков: ${carpet.valuePuchok}</p>
+                    <p class="valuePuchok">Коды: ${carpet.codes}</p>
             </div>
             <div class="btns">
                 <button class="change">Изменить</button>
@@ -37,12 +38,18 @@ let showData = (prom) => {
             </div>
         `
 
+
+
         for (let item of div.querySelectorAll('button')) {
             if (item.className.includes('change')) {
                 item.onclick = () => {
                     changeCarpet.parentNode.classList.add('active')
                     changeCarpet.parentElement.querySelector('.bg').onclick = () => {
                         changeCarpet.parentElement.classList.remove('active')
+                    }
+                    for (let inputs of changeCarpet.children) {
+                        console.log(inputs.value = carpet[inputs.name]);
+                        // if(inputs.name == )
                     }
                     changeCarpet.onsubmit = async () => {
                         event.preventDefault();
@@ -54,7 +61,7 @@ let showData = (prom) => {
                         try {
                             const response = await axios.patch(`https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets/${carpet._id}`, obj, {
                                 headers: {
-                                    'Content-Type': 'multipart/form-data'
+                                    'Content-Type': 'application/json'
                                 }
                             });
                             getUsers()
@@ -93,10 +100,4 @@ search_carpet.onkeyup = function () {
 
     if (event.target.value.toLowerCase().length >= 1 && filteredCategories.length == 0) wrapper.innerHTML = "Ничего нет"
     else showData(filteredCategories)
-};
-
-
-// for(let images of carpet.image_carpet){
-//     console.log(images.image_carpet);
-//     console.log(document.querySelector('.carpet_images'));
-// }
+}

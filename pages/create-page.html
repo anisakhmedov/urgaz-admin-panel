@@ -22,12 +22,30 @@
             <input type="text" id="vorse" name="vorse" placeholder="Vorse" required />
             <input type="text" id="weight" name="weight" placeholder="Weight" required />
             <input type="text" id="valuePuchok" name="valuePuchok" placeholder="Value Puchok" required />
+            <input type="text" id="codes" name="codes" placeholder="Codes" required />
+            <input type="file" multiple id="image_carpet" name="image_carpet" placeholder="Value Puchok" required />
             <button type="button" onclick="createCarpet()">Create Carpet</button>
         </form>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        document.getElementById("image_carpet").onchange = () => {
+            const fileInput = document.getElementById('image_carpet');
+
+            // Get the selected files
+            const files = fileInput.files;
+            let arr = []
+            let str = ''
+            for(let item in files){
+                if(item != 'length' && item != 'item'){
+                    str += files[item].name.split('.')[0] + ' ' 
+                    // arr.push(files[item].name)
+                }
+            }
+            document.getElementById('codes').value = str
+            // console.log(str );
+        }
         async function createCarpet() {
             const formData = {
                 categories_ru: document.getElementById('categories_ru').value,
@@ -36,19 +54,22 @@
                 title: document.getElementById('title').value,
                 vorse: document.getElementById('vorse').value,
                 weight: document.getElementById('weight').value,
-                valuePuchok: document.getElementById('valuePuchok').value
+                valuePuchok: document.getElementById('valuePuchok').value,
+                codes: document.getElementById('codes').value
             };
 
-            try {
-                const response = await axios.post('https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets', formData, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                console.log('Carpet created', response.data);
-            } catch (error) {
-                console.error('Error creating carpet', error.response.data);
-            }
+            document.getElementById('image_carpet').nodeValue
+
+            // try {
+            //     const response = await axios.post('https://urgaz-basedate-64ecc72d32d4.herokuapp.com/carpets', formData, {
+            //         headers: {
+            //             'Content-Type': 'application/json'
+            //         }
+            //     });
+            //     console.log('Carpet created', response.data);
+            // } catch (error) {
+            //     console.error('Error creating carpet', error.response.data);
+            // }
         }
     </script>
 </body>
